@@ -1,0 +1,317 @@
+/* =========================================================
+   TOKENS — change these six values to re-theme the whole site
+   ========================================================= */
+:root {
+  --bg: #14110D;
+  --bg-panel: #1E1912;
+  --accent: #E8A33D;
+  --accent-dim: #B87F2E;
+  --text: #F3EFE6;
+  --text-muted: #9C9284;
+  --rule: #322B21;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+
+  --max-width: 720px;
+  --edge: clamp(24px, 6vw, 64px);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+}
+
+a { color: inherit; }
+
+/* Visible keyboard focus everywhere */
+a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px var(--edge);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-mark {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: clamp(16px, 3vw, 32px);
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-links a.active {
+  color: var(--text);
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(64px, 14vh, 140px) var(--edge) 80px;
+}
+
+.hero-kicker {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+}
+
+.hero-headline {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.hero-sub {
+  margin-top: 24px;
+  max-width: 60ch;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.stat-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 48px);
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.stat { display: flex; flex-direction: column; }
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--accent);
+  /* the one orchestrated motion moment: a cue-light click-on */
+  opacity: 0;
+  transform: scale(0.85);
+  animation: cue-on 0.4s ease-out 0.15s forwards;
+}
+
+@keyframes cue-on {
+  to { opacity: 1; transform: scale(1); }
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* =========================================================
+   SECTION SHELL
+   ========================================================= */
+section:not(.hero) {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 72px var(--edge);
+  border-top: 1px solid var(--rule);
+}
+
+section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 28px;
+}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+.about-lede {
+  font-size: 1.1rem;
+  color: var(--text);
+  max-width: 58ch;
+}
+
+.about p { max-width: 58ch; color: var(--text-muted); }
+.about p.about-lede { color: var(--text); }
+
+.placeholder-block {
+  margin-top: 28px;
+  border: 1px dashed var(--rule);
+  border-radius: 4px;
+  padding: 32px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* =========================================================
+   PROJECTS — rundown rows, not cards
+   ========================================================= */
+.project-row {
+  border-top: 1px solid var(--rule);
+  padding: 28px 0;
+  cursor: pointer;
+}
+
+.project-row:last-child { padding-bottom: 0; }
+
+.project-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.project-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+}
+
+.project-stat {
+  flex-shrink: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.project-stat .num {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.project-stat .unit {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.project-desc {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  max-width: 58ch;
+}
+
+.project-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.25s ease, opacity 0.2s ease;
+}
+
+.project-row[aria-expanded="true"] .project-detail {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.project-detail > * { overflow: hidden; }
+
+.project-detail ul {
+  margin: 16px 0 0;
+  padding-left: 20px;
+  color: var(--text-muted);
+  max-width: 58ch;
+}
+
+.project-detail li { margin-bottom: 8px; }
+
+/* =========================================================
+   RESUME / CONTACT
+   ========================================================= */
+.resume p, .contact p { color: var(--text-muted); max-width: 58ch; }
+
+.resume-download,
+.contact-email {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 22px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.resume-download:hover,
+.contact-email:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px var(--edge) 64px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 560px) {
+  .nav { padding: 16px var(--edge); }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 0.8rem; }
+  .project-row-top { flex-direction: column; }
+  .project-stat { text-align: left; }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .stat-num { animation: none; opacity: 1; transform: none; }
+  .project-detail { transition: none; }
+}
