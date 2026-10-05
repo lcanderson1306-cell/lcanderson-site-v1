@@ -28,6 +28,37 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
+  position: relative;
+}
+
+/* Subtle grain texture over the whole page — breaks up flat dark-mode
+   backgrounds without being a visible "effect." Barely perceptible on
+   purpose; this is the difference between "designed" and "default." */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Thin progress line at the very top, fills as you scroll the page */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 100;
+  transition: width 0.1s linear;
 }
 
 h1, h2 {
@@ -98,9 +129,32 @@ a:focus-visible, [tabindex]:focus-visible {
    HERO
    ========================================================= */
 .hero {
+  position: relative;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: clamp(64px, 14vh, 140px) var(--edge) 80px;
+  overflow: hidden;
+}
+
+/* Soft amber glow that follows the cursor within the hero only —
+   one restrained "alive" touch, off entirely on touch devices and
+   for anyone with reduced-motion set. */
+.hero-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 30%;
+  filter: blur(10px);
+  transition: left 0.4s ease-out, top 0.4s ease-out;
+}
+
+@media (hover: none) {
+  .hero-glow { display: none; }
 }
 
 .hero-kicker {
@@ -120,6 +174,33 @@ a:focus-visible, [tabindex]:focus-visible {
   max-width: 60ch;
   color: var(--text-muted);
   font-size: 1.05rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 6px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+  animation: pulse 2.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+  70%  { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 .stat-strip {
@@ -195,9 +276,29 @@ section h2 {
    ========================================================= */
 .project-row {
   border-top: 1px solid var(--rule);
-  padding: 28px 0;
+  padding: 28px 20px;
+  margin: 0 -20px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
+
+.project-row:hover {
+  background: var(--bg-panel);
+  transform: translateX(4px);
+}
+
+.shop-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.shop-link:hover { border-color: var(--accent); }
 
 .project-row:last-child { padding-bottom: 0; }
 
@@ -314,4 +415,7 @@ section h2 {
   html { scroll-behavior: auto; }
   .stat-num { animation: none; opacity: 1; transform: none; }
   .project-detail { transition: none; }
+  .status-dot { animation: none; }
+  .hero-glow { display: none; }
+  .scroll-progress { transition: none; }
 }

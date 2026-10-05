@@ -1,4 +1,36 @@
 // ---------------------------------------------------------
+// 0a. Scroll progress bar
+// ---------------------------------------------------------
+const progressBar = document.getElementById("scrollProgress");
+
+const updateProgress = () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = pct + "%";
+};
+
+window.addEventListener("scroll", updateProgress, { passive: true });
+updateProgress();
+
+// ---------------------------------------------------------
+// 0b. Cursor-reactive glow in the hero (desktop only, respects
+//     prefers-reduced-motion — purely decorative, never required
+//     for usability)
+// ---------------------------------------------------------
+const heroGlow = document.getElementById("heroGlow");
+const heroSection = document.getElementById("home");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (heroGlow && heroSection && !reduceMotion && window.matchMedia("(hover: hover)").matches) {
+  heroSection.addEventListener("mousemove", (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    heroGlow.style.left = (e.clientX - rect.left) + "px";
+    heroGlow.style.top = (e.clientY - rect.top) + "px";
+  });
+}
+
+// ---------------------------------------------------------
 // 1. Highlight the current section in the nav as you scroll
 // ---------------------------------------------------------
 const sections = document.querySelectorAll("main section[id]");

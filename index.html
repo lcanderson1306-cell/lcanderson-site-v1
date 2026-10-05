@@ -5,12 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Landon Anderson — Marketing & Finance</title>
 <meta name="description" content="Marketing and finance student building brand experience through an independent resale business, AI workflow systems, and media production.">
+
+<!-- Open Graph / link preview — this is what shows up when you paste the link in LinkedIn, Slack, email, etc. -->
+<meta property="og:title" content="Landon Anderson — Marketing & Finance">
+<meta property="og:description" content="Marketing and finance student building brand experience through an independent resale business, AI workflow systems, and media production.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lcanderson.co">
+<meta property="og:image" content="https://lcanderson.co/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14110D">
+
+<!-- Favicon: an inline "LC" monogram, no image file needed -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314110D'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23E8A33D' text-anchor='middle'%3ELC%3C/text%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <header class="nav">
   <a href="#home" class="nav-mark">LC</a>
@@ -25,6 +40,7 @@
 <main>
 
   <section id="home" class="hero">
+    <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
     <p class="hero-kicker">Marketing &amp; Finance — Olivet Nazarene University</p>
     <h1 class="hero-headline">
       Landon Anderson markets like a strategist and measures like an analyst.
@@ -34,10 +50,15 @@
       AI-assisted workflows — currently turning that into a career in brand marketing.
     </p>
 
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      Open to Summer 2027 marketing internships
+    </div>
+
     <div class="stat-strip">
       <div class="stat">
-        <span class="stat-num">86%</span>
-        <span class="stat-label">Sell-through rate,<br>resale business</span>
+        <span class="stat-num">46</span>
+        <span class="stat-label">Items sold,<br>resale business</span>
       </div>
       <div class="stat">
         <span class="stat-num">$3M</span>
@@ -74,22 +95,24 @@
     <div class="project-row" tabindex="0" role="button" aria-expanded="false">
       <div class="project-row-top">
         <div class="project-name">Resale Business</div>
-        <div class="project-stat"><span class="num">86%</span><span class="unit">sell-through</span></div>
+        <div class="project-stat"><span class="num">46</span><span class="unit">items sold</span></div>
       </div>
       <p class="project-desc">
-        Independent Depop &amp; eBay operation — sourcing, photography, pricing,
-        and a relisting strategy built from testing, not guesswork.
+        Independent resale operation on Depop (@lcanderson13) — sourcing, photography,
+        pricing, and a relisting strategy built from testing, not guesswork.
       </p>
       <div class="project-detail">
         <ul>
-          <li>43 of 50 listings sold to date across two e-commerce platforms.</li>
+          <li>46 items sold to date, 5-star rating across 7 reviews, 19 listings
+              currently active.</li>
           <li>Relisting strategy: boost after ~3 days of inactivity, consistently
               producing a sale within 2 days of boosting.</li>
           <li>Improved conversion through iterative product photography —
               multi-angle shots, lighting/exposure correction, cropping.</li>
         </ul>
+        <a class="shop-link" href="https://www.depop.com/lcanderson13" target="_blank" rel="noopener">View the shop on Depop →</a>
         <div class="placeholder-block" data-placeholder="Depop listing photos">
-          <span>+ Add: listing photos or shop link</span>
+          <span>+ Add: listing photos</span>
         </div>
       </div>
     </div>
