@@ -207,7 +207,7 @@ a:focus-visible, [tabindex]:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(24px, 4vw, 48px);
-  margin-top: 56px;
+  margin-top: 40px;
   padding-top: 28px;
   border-top: 1px solid var(--rule);
 }
@@ -271,6 +271,30 @@ section h2 {
   text-align: center;
 }
 
+.about-image {
+  display: block;
+  margin-top: 28px;
+  max-width: 320px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+}
+
+.listing-photos {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.listing-photos img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+}
+
 /* =========================================================
    PROJECTS — rundown rows, not cards
    ========================================================= */
@@ -288,19 +312,7 @@ section h2 {
   transform: translateX(4px);
 }
 
-.shop-link {
-  display: inline-block;
-  margin-top: 16px;
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.9rem;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease;
-}
-
-.shop-link:hover { border-color: var(--accent); }
-
-.project-row:last-child { padding-bottom: 0; }
+.project-row:last-child { padding-bottom: 8px; }
 
 .project-row-top {
   display: flex;
@@ -338,6 +350,18 @@ section h2 {
   color: var(--text-muted);
   max-width: 58ch;
 }
+
+.shop-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.shop-link:hover { border-color: var(--accent); }
 
 .project-detail {
   display: grid;
